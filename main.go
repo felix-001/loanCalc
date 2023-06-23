@@ -14,7 +14,7 @@ func main() {
 	totalInterest := 0.0        // 总利息
 	totalPayment := 0.0         // 还款总额
 
-	// 计算每月还款额
+	// 每月还款额:贷款本金×[月利率×(1+月利率)^还款月数]÷[(1+月利率)^还款月数-1]
 	paymentPerMonth = (principal * interestRate * math.Pow(1+interestRate,
 		float64(paymentPeriod))) / (math.Pow(1+interestRate, float64(paymentPeriod)) - 1)
 
@@ -24,9 +24,6 @@ func main() {
 
 	// 输出计算结果
 	fmt.Println("每月还款额,总利息,还款总额")
-	//fmt.Printf("每月还款额为：%.2f\n元 ", paymentPerMonth)
-	//fmt.Printf("总利息为：%.2f 元\n", totalInterest)
-	//fmt.Printf("还款总额为：%.2f 元\n", totalPayment)
 	fmt.Printf("%.2f, %.2f, %.2f\n", paymentPerMonth, totalInterest, totalPayment)
 
 	fmt.Println("期,月供,本金,利息")
@@ -40,8 +37,6 @@ func main() {
 		monthInterest := principal * interestRate * (math.Pow(1+interestRate,
 			float64(paymentPeriod)) - math.Pow(1+interestRate, float64(i-1))) /
 			(math.Pow(1+interestRate, float64(paymentPeriod)) - 1)
-		//fmt.Printf("第 %d 期月供为：%.2f 元，本金为: %.2f，利息为：%.2f 元\n", i, paymentPerMonth,
-		//principalPerMon, monthInterest)
 		fmt.Printf("%03d,%.2f元,%.2f元,%.2f元\n", i, paymentPerMonth, principalPerMon, monthInterest)
 	}
 }
