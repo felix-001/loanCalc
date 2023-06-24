@@ -44,15 +44,9 @@ func main() {
 	fmt.Println("每月还款额,总利息,还款总额")
 	fmt.Printf("%.2f, %.2f, %.2f\n", paymentPerMonth, totalInterest, totalPayment)
 
-	principalPerMon := (1140000.0 * interestRate * math.Pow(1+interestRate, float64(11-1))) /
+	principalPerMon := (principal * interestRate * math.Pow(1+interestRate, float64(11-1))) /
 		(math.Pow(1+interestRate, float64(paymentPeriod)) - 1)
 	fmt.Printf("第11个月的本金: %.2f\n", principalPerMon)
-
-	reduceInterest := (principal - (paymentPerMonth * float64(10))) * interestRate // 需要减免的利息金额
-	fmt.Println("reduceInterest:", reduceInterest)
-	reducePrincipal := extraPayment - reduceInterest // 减免的本金金额
-	fmt.Println("reducePrincipal:", reducePrincipal)
-	principal -= (reducePrincipal + principalPerMon)
 
 	fmt.Println("期,月供,本金,利息")
 	// 打印每个月的月供和利息
